@@ -1,0 +1,15 @@
+# Block ALL node_modules folders anywhere in the project
+node_modules/
+
+# Block ALL .env files anywhere in the project
+.env
+*.env
+.env.local
+
+# Block Build folders
+dist/
+build/
+
+# Misc
+.DS_Store
+npm-debug.log*

@@ -1,0 +1,662 @@
+[
+  {
+    "title": "Add Two Numbers",
+    "description": "Write a function named `add` that takes two integers and returns their sum.",
+    "topic": "Mathematics",
+    "difficulty": "EASY",
+    "expReward": 100,
+    "examples": [
+      { "input": "5, 7", "output": "12", "explanation": "5 + 7 = 12." },
+      { "input": "-3, 10", "output": "7", "explanation": "-3 + 10 = 7." }
+    ],
+    "testCases": [
+      { "input": "add(5, 7)", "output": "12", "isHidden": false },
+      { "input": "add(-10, 20)", "output": "10", "isHidden": false },
+      { "input": "add(0, 0)", "output": "0", "isHidden": true }
+    ],
+    "starterCode": {
+      "python": "def add(a, b):\n    return 0",
+      "javascript": "function add(a, b) {\n    return 0;\n}",
+      "cpp": "int add(int a, int b) {\n    return 0;\n}",
+      "java": "public static int add(int a, int b) {\n    return 0;\n}"
+    }
+  },
+  {
+    "title": "The Even Identifier",
+    "description": "Write a function named `isEven` that takes an integer `n`. Return `1` if it is even, and `0` if it is odd.",
+    "topic": "Mathematics",
+    "difficulty": "EASY",
+    "expReward": 100,
+    "examples": [
+      { "input": "10", "output": "1", "explanation": "10 is divisible by 2, so it is even (1)." },
+      { "input": "7", "output": "0", "explanation": "7 is not divisible by 2, so it is odd (0)." }
+    ],
+    "testCases": [
+      { "input": "isEven(10)", "output": "1", "isHidden": false },
+      { "input": "isEven(7)", "output": "0", "isHidden": false },
+      { "input": "isEven(0)", "output": "1", "isHidden": true }
+    ],
+    "starterCode": {
+      "python": "def isEven(n):\n    return 0",
+      "javascript": "function isEven(n) {\n    return 0;\n}",
+      "cpp": "int isEven(int n) {\n    return 0;\n}",
+      "java": "public static int isEven(int n) {\n    return 0;\n}"
+    }
+  },
+  {
+    "title": "Maximum of Three",
+    "description": "Write a function named `maxOfThree` that takes three integers and returns the largest one.",
+    "topic": "Mathematics",
+    "difficulty": "EASY",
+    "expReward": 100,
+    "examples": [
+      { "input": "10, 25, 5", "output": "25", "explanation": "25 is the largest of the three numbers." },
+      { "input": "-5, -2, -10", "output": "-2", "explanation": "-2 is greater than -5 and -10." }
+    ],
+    "testCases": [
+      { "input": "maxOfThree(10, 25, 5)", "output": "25", "isHidden": false },
+      { "input": "maxOfThree(-5, -2, -10)", "output": "-2", "isHidden": false },
+      { "input": "maxOfThree(7, 7, 7)", "output": "7", "isHidden": true }
+    ],
+    "starterCode": {
+      "python": "def maxOfThree(a, b, c):\n    return 0",
+      "javascript": "function maxOfThree(a, b, c) {\n    return 0;\n}",
+      "cpp": "int maxOfThree(int a, int b, int c) {\n    return 0;\n}",
+      "java": "public static int maxOfThree(int a, int b, int c) {\n    return 0;\n}"
+    }
+  },
+  {
+    "title": "String Length",
+    "description": "Write a function named `strLength` that takes a string and returns the number of characters in it.",
+    "topic": "Strings",
+    "difficulty": "EASY",
+    "expReward": 100,
+    "examples": [
+      { "input": "\"hello\"", "output": "5", "explanation": "\"hello\" has 5 characters." },
+      { "input": "\"grads\"", "output": "5", "explanation": "\"grads\" has 5 characters." }
+    ],
+    "testCases": [
+      { "input": "strLength(\"hello\")", "output": "5", "isHidden": false },
+      { "input": "strLength(\"grads\")", "output": "5", "isHidden": false },
+      { "input": "strLength(\"\")", "output": "0", "isHidden": true }
+    ],
+    "starterCode": {
+      "python": "def strLength(s):\n    return 0",
+      "javascript": "function strLength(s) {\n    return 0;\n}",
+      "cpp": "int strLength(string s) {\n    return 0;\n}",
+      "java": "public static int strLength(String s) {\n    return 0;\n}"
+    }
+  },
+  {
+    "title": "Vowel Counter",
+    "description": "Write a function named `countVowels` that takes a lowercase string and returns the number of vowels (a, e, i, o, u) it contains.",
+    "topic": "Strings",
+    "difficulty": "EASY",
+    "expReward": 100,
+    "examples": [
+      { "input": "\"hello\"", "output": "2", "explanation": "The vowels are 'e' and 'o'." },
+      { "input": "\"rhythm\"", "output": "0", "explanation": "There are no vowels in \"rhythm\"." }
+    ],
+    "testCases": [
+      { "input": "countVowels(\"hello\")", "output": "2", "isHidden": false },
+      { "input": "countVowels(\"rhythm\")", "output": "0", "isHidden": false },
+      { "input": "countVowels(\"aeiou\")", "output": "5", "isHidden": true }
+    ],
+    "starterCode": {
+      "python": "def countVowels(s):\n    return 0",
+      "javascript": "function countVowels(s) {\n    return 0;\n}",
+      "cpp": "int countVowels(string s) {\n    return 0;\n}",
+      "java": "public static int countVowels(String s) {\n    return 0;\n}"
+    }
+  },
+  {
+    "title": "First Character",
+    "description": "Write a function named `firstChar` that takes a string and returns its first character. If the string is empty, return \"EMPTY\".",
+    "topic": "Strings",
+    "difficulty": "EASY",
+    "expReward": 100,
+    "examples": [
+      { "input": "\"logic\"", "output": "l", "explanation": "The first character of \"logic\" is 'l'." },
+      { "input": "\"\"", "output": "EMPTY", "explanation": "The string is empty." }
+    ],
+    "testCases": [
+      { "input": "firstChar(\"logic\")", "output": "l", "isHidden": false },
+      { "input": "firstChar(\"apple\")", "output": "a", "isHidden": false },
+      { "input": "firstChar(\"\")", "output": "EMPTY", "isHidden": true }
+    ],
+    "starterCode": {
+      "python": "def firstChar(s):\n    return \"\"",
+      "javascript": "function firstChar(s) {\n    return \"\";\n}",
+      "cpp": "string firstChar(string s) {\n    return \"\";\n}",
+      "java": "public static String firstChar(String s) {\n    return \"\";\n}"
+    }
+  },
+  {
+    "title": "Last Character",
+    "description": "Write a function named `lastChar` that takes a string and returns its last character. If empty, return \"EMPTY\".",
+    "topic": "Strings",
+    "difficulty": "EASY",
+    "expReward": 100,
+    "examples": [
+      { "input": "\"logic\"", "output": "c", "explanation": "The last character is 'c'." },
+      { "input": "\"a\"", "output": "a", "explanation": "The only character is 'a'." }
+    ],
+    "testCases": [
+      { "input": "lastChar(\"logic\")", "output": "c", "isHidden": false },
+      { "input": "lastChar(\"a\")", "output": "a", "isHidden": false },
+      { "input": "lastChar(\"\")", "output": "EMPTY", "isHidden": true }
+    ],
+    "starterCode": {
+      "python": "def lastChar(s):\n    return \"\"",
+      "javascript": "function lastChar(s) {\n    return \"\";\n}",
+      "cpp": "string lastChar(string s) {\n    return \"\";\n}",
+      "java": "public static String lastChar(String s) {\n    return \"\";\n}"
+    }
+  },
+  {
+    "title": "Concatenate Strings",
+    "description": "Write a function named `concatStr` that takes two strings and returns them joined together.",
+    "topic": "Strings",
+    "difficulty": "EASY",
+    "expReward": 100,
+    "examples": [
+      { "input": "\"java\", \"script\"", "output": "javascript", "explanation": "Combined, they form \"javascript\"." },
+      { "input": "\"hello\", \"world\"", "output": "helloworld", "explanation": "No space is added between them." }
+    ],
+    "testCases": [
+      { "input": "concatStr(\"java\", \"script\")", "output": "javascript", "isHidden": false },
+      { "input": "concatStr(\"hello\", \"world\")", "output": "helloworld", "isHidden": false },
+      { "input": "concatStr(\"\", \"test\")", "output": "test", "isHidden": true }
+    ],
+    "starterCode": {
+      "python": "def concatStr(s1, s2):\n    return \"\"",
+      "javascript": "function concatStr(s1, s2) {\n    return \"\";\n}",
+      "cpp": "string concatStr(string s1, string s2) {\n    return \"\";\n}",
+      "java": "public static String concatStr(String s1, String s2) {\n    return \"\";\n}"
+    }
+  },
+  {
+    "title": "Square a Number",
+    "description": "Write a function named `square` that takes an integer and returns its square (n * n).",
+    "topic": "Mathematics",
+    "difficulty": "EASY",
+    "expReward": 100,
+    "examples": [
+      { "input": "5", "output": "25", "explanation": "5 * 5 = 25." },
+      { "input": "-4", "output": "16", "explanation": "Negative times negative is positive: -4 * -4 = 16." }
+    ],
+    "testCases": [
+      { "input": "square(5)", "output": "25", "isHidden": false },
+      { "input": "square(-4)", "output": "16", "isHidden": false },
+      { "input": "square(0)", "output": "0", "isHidden": true }
+    ],
+    "starterCode": {
+      "python": "def square(n):\n    return 0",
+      "javascript": "function square(n) {\n    return 0;\n}",
+      "cpp": "int square(int n) {\n    return 0;\n}",
+      "java": "public static int square(int n) {\n    return 0;\n}"
+    }
+  },
+  {
+    "title": "Determine Sign",
+    "description": "Write a function named `getSign` that returns `1` if a number is positive, `-1` if negative, and `0` if it is zero.",
+    "topic": "Mathematics",
+    "difficulty": "EASY",
+    "expReward": 100,
+    "examples": [
+      { "input": "42", "output": "1", "explanation": "42 is strictly greater than 0." },
+      { "input": "-15", "output": "-1", "explanation": "-15 is strictly less than 0." }
+    ],
+    "testCases": [
+      { "input": "getSign(42)", "output": "1", "isHidden": false },
+      { "input": "getSign(-15)", "output": "-1", "isHidden": false },
+      { "input": "getSign(0)", "output": "0", "isHidden": true }
+    ],
+    "starterCode": {
+      "python": "def getSign(n):\n    return 0",
+      "javascript": "function getSign(n) {\n    return 0;\n}",
+      "cpp": "int getSign(int n) {\n    return 0;\n}",
+      "java": "public static int getSign(int n) {\n    return 0;\n}"
+    }
+  },
+  {
+    "title": "Absolute Value",
+    "description": "Write a function named `absValue` that returns the absolute (positive) value of an integer without using built-in math libraries.",
+    "topic": "Mathematics",
+    "difficulty": "EASY",
+    "expReward": 100,
+    "examples": [
+      { "input": "-15", "output": "15", "explanation": "The distance from 0 is 15." },
+      { "input": "10", "output": "10", "explanation": "10 is already positive." }
+    ],
+    "testCases": [
+      { "input": "absValue(-15)", "output": "15", "isHidden": false },
+      { "input": "absValue(10)", "output": "10", "isHidden": false },
+      { "input": "absValue(0)", "output": "0", "isHidden": true }
+    ],
+    "starterCode": {
+      "python": "def absValue(n):\n    return 0",
+      "javascript": "function absValue(n) {\n    return 0;\n}",
+      "cpp": "int absValue(int n) {\n    return 0;\n}",
+      "java": "public static int absValue(int n) {\n    return 0;\n}"
+    }
+  },
+  {
+    "title": "Perimeter of Rectangle",
+    "description": "Write a function named `perimeter` that calculates the perimeter of a rectangle (2 * (length + width)).",
+    "topic": "Mathematics",
+    "difficulty": "EASY",
+    "expReward": 100,
+    "examples": [
+      { "input": "5, 4", "output": "18", "explanation": "2 * (5 + 4) = 18." },
+      { "input": "10, 10", "output": "40", "explanation": "2 * (10 + 10) = 40." }
+    ],
+    "testCases": [
+      { "input": "perimeter(5, 4)", "output": "18", "isHidden": false },
+      { "input": "perimeter(10, 10)", "output": "40", "isHidden": false },
+      { "input": "perimeter(1, 99)", "output": "200", "isHidden": true }
+    ],
+    "starterCode": {
+      "python": "def perimeter(length, width):\n    return 0",
+      "javascript": "function perimeter(length, width) {\n    return 0;\n}",
+      "cpp": "int perimeter(int length, int width) {\n    return 0;\n}",
+      "java": "public static int perimeter(int length, int width) {\n    return 0;\n}"
+    }
+  },
+  {
+    "title": "Is Digit?",
+    "description": "Write a function named `isDigit` that takes a string of length 1. Return `1` if the character is a number (0-9), and `0` otherwise.",
+    "topic": "Strings",
+    "difficulty": "EASY",
+    "expReward": 100,
+    "examples": [
+      { "input": "\"7\"", "output": "1", "explanation": "7 is a numeric digit." },
+      { "input": "\"a\"", "output": "0", "explanation": "'a' is a letter, not a digit." }
+    ],
+    "testCases": [
+      { "input": "isDigit(\"7\")", "output": "1", "isHidden": false },
+      { "input": "isDigit(\"a\")", "output": "0", "isHidden": false },
+      { "input": "isDigit(\"0\")", "output": "1", "isHidden": true }
+    ],
+    "starterCode": {
+      "python": "def isDigit(s):\n    return 0",
+      "javascript": "function isDigit(s) {\n    return 0;\n}",
+      "cpp": "int isDigit(string s) {\n    return 0;\n}",
+      "java": "public static int isDigit(String s) {\n    return 0;\n}"
+    }
+  },
+  {
+    "title": "Count Consonants",
+    "description": "Write a function named `countConsonants` that takes a lowercase string and returns the number of consonants (letters that are not vowels). Ignore spaces.",
+    "topic": "Strings",
+    "difficulty": "EASY",
+    "expReward": 100,
+    "examples": [
+      { "input": "\"hello\"", "output": "3", "explanation": "h, l, l are consonants." },
+      { "input": "\"aeiou\"", "output": "0", "explanation": "There are no consonants here." }
+    ],
+    "testCases": [
+      { "input": "countConsonants(\"hello\")", "output": "3", "isHidden": false },
+      { "input": "countConsonants(\"aeiou\")", "output": "0", "isHidden": false },
+      { "input": "countConsonants(\"zxcvbnm\")", "output": "7", "isHidden": true }
+    ],
+    "starterCode": {
+      "python": "def countConsonants(s):\n    return 0",
+      "javascript": "function countConsonants(s) {\n    return 0;\n}",
+      "cpp": "int countConsonants(string s) {\n    return 0;\n}",
+      "java": "public static int countConsonants(String s) {\n    return 0;\n}"
+    }
+  },
+  {
+    "title": "Divide by Two",
+    "description": "Write a function named `halfNum` that takes an integer and returns integer division by 2 (floor the result if odd).",
+    "topic": "Mathematics",
+    "difficulty": "EASY",
+    "expReward": 100,
+    "examples": [
+      { "input": "11", "output": "5", "explanation": "11 / 2 is 5.5, floored to 5." },
+      { "input": "20", "output": "10", "explanation": "20 / 2 is exactly 10." }
+    ],
+    "testCases": [
+      { "input": "halfNum(11)", "output": "5", "isHidden": false },
+      { "input": "halfNum(20)", "output": "10", "isHidden": false },
+      { "input": "halfNum(3)", "output": "1", "isHidden": true }
+    ],
+    "starterCode": {
+      "python": "def halfNum(n):\n    return 0",
+      "javascript": "function halfNum(n) {\n    return 0;\n}",
+      "cpp": "int halfNum(int n) {\n    return 0;\n}",
+      "java": "public static int halfNum(int n) {\n    return 0;\n}"
+    }
+  },
+  {
+    "title": "Reverse a String",
+    "description": "Write a function named `reverseStr` that takes a string and returns it backwards.",
+    "topic": "Strings",
+    "difficulty": "MEDIUM",
+    "expReward": 250,
+    "examples": [
+      { "input": "\"hello\"", "output": "olleh", "explanation": "The letters are flipped." },
+      { "input": "\"code\"", "output": "edoc", "explanation": "Read from right to left." }
+    ],
+    "testCases": [
+      { "input": "reverseStr(\"hello\")", "output": "olleh", "isHidden": false },
+      { "input": "reverseStr(\"code\")", "output": "edoc", "isHidden": false },
+      { "input": "reverseStr(\"a\")", "output": "a", "isHidden": true }
+    ],
+    "starterCode": {
+      "python": "def reverseStr(s):\n    return \"\"",
+      "javascript": "function reverseStr(s) {\n    return \"\";\n}",
+      "cpp": "string reverseStr(string s) {\n    return \"\";\n}",
+      "java": "public static String reverseStr(String s) {\n    return \"\";\n}"
+    }
+  },
+  {
+    "title": "Valid Palindrome",
+    "description": "Write a function named `isPalindrome` that returns `1` if a given string reads the same forwards and backwards, and `0` otherwise.",
+    "topic": "Two Pointers",
+    "difficulty": "MEDIUM",
+    "expReward": 250,
+    "examples": [
+      { "input": "\"racecar\"", "output": "1", "explanation": "racecar backwards is racecar." },
+      { "input": "\"hello\"", "output": "0", "explanation": "hello backwards is olleh." }
+    ],
+    "testCases": [
+      { "input": "isPalindrome(\"racecar\")", "output": "1", "isHidden": false },
+      { "input": "isPalindrome(\"hello\")", "output": "0", "isHidden": false },
+      { "input": "isPalindrome(\"a\")", "output": "1", "isHidden": true }
+    ],
+    "starterCode": {
+      "python": "def isPalindrome(s):\n    return 0",
+      "javascript": "function isPalindrome(s) {\n    return 0;\n}",
+      "cpp": "int isPalindrome(string s) {\n    return 0;\n}",
+      "java": "public static int isPalindrome(String s) {\n    return 0;\n}"
+    }
+  },
+  {
+    "title": "Valid Anagram",
+    "description": "Write a function named `isAnagram` that takes two strings. Return `1` if they contain the exact same characters in any order, and `0` otherwise.",
+    "topic": "Hashing",
+    "difficulty": "MEDIUM",
+    "expReward": 250,
+    "examples": [
+      { "input": "\"listen\", \"silent\"", "output": "1", "explanation": "Both contain l, i, s, t, e, n." },
+      { "input": "\"rat\", \"car\"", "output": "0", "explanation": "They do not share the same letters." }
+    ],
+    "testCases": [
+      { "input": "isAnagram(\"listen\", \"silent\")", "output": "1", "isHidden": false },
+      { "input": "isAnagram(\"rat\", \"car\")", "output": "0", "isHidden": false },
+      { "input": "isAnagram(\"a\", \"a\")", "output": "1", "isHidden": true }
+    ],
+    "starterCode": {
+      "python": "def isAnagram(s1, s2):\n    return 0",
+      "javascript": "function isAnagram(s1, s2) {\n    return 0;\n}",
+      "cpp": "int isAnagram(string s1, string s2) {\n    return 0;\n}",
+      "java": "public static int isAnagram(String s1, String s2) {\n    return 0;\n}"
+    }
+  },
+  {
+    "title": "First Unique Character",
+    "description": "Write a function named `firstUnique` that returns the first non-repeating character in a string. If all repeat, return \"-\".",
+    "topic": "Hashing",
+    "difficulty": "MEDIUM",
+    "expReward": 250,
+    "examples": [
+      { "input": "\"leetcode\"", "output": "l", "explanation": "'l' is the first character that only appears once." },
+      { "input": "\"aabb\"", "output": "-", "explanation": "All characters repeat." }
+    ],
+    "testCases": [
+      { "input": "firstUnique(\"leetcode\")", "output": "l", "isHidden": false },
+      { "input": "firstUnique(\"aabb\")", "output": "-", "isHidden": false },
+      { "input": "firstUnique(\"loveleetcode\")", "output": "v", "isHidden": true }
+    ],
+    "starterCode": {
+      "python": "def firstUnique(s):\n    return \"\"",
+      "javascript": "function firstUnique(s) {\n    return \"\";\n}",
+      "cpp": "string firstUnique(string s) {\n    return \"\";\n}",
+      "java": "public static String firstUnique(String s) {\n    return \"\";\n}"
+    }
+  },
+  {
+    "title": "Character Frequency",
+    "description": "Write a function named `charFrequency` that takes a main string and a single target character string. Return how many times the target appears in the main string.",
+    "topic": "Strings",
+    "difficulty": "MEDIUM",
+    "expReward": 250,
+    "examples": [
+      { "input": "\"hello\", \"l\"", "output": "2", "explanation": "'l' appears twice in hello." },
+      { "input": "\"mississippi\", \"s\"", "output": "4", "explanation": "'s' appears 4 times." }
+    ],
+    "testCases": [
+      { "input": "charFrequency(\"hello\", \"l\")", "output": "2", "isHidden": false },
+      { "input": "charFrequency(\"mississippi\", \"s\")", "output": "4", "isHidden": false },
+      { "input": "charFrequency(\"abcd\", \"z\")", "output": "0", "isHidden": true }
+    ],
+    "starterCode": {
+      "python": "def charFrequency(s, target):\n    return 0",
+      "javascript": "function charFrequency(s, target) {\n    return 0;\n}",
+      "cpp": "int charFrequency(string s, string target) {\n    return 0;\n}",
+      "java": "public static int charFrequency(String s, String target) {\n    return 0;\n}"
+    }
+  },
+  {
+    "title": "Factorial Calculation",
+    "description": "Write a function named `factorial` that takes a positive integer `n` and returns its factorial (n!). If n is 0, return 1.",
+    "topic": "Mathematics",
+    "difficulty": "MEDIUM",
+    "expReward": 250,
+    "examples": [
+      { "input": "5", "output": "120", "explanation": "5 * 4 * 3 * 2 * 1 = 120." },
+      { "input": "0", "output": "1", "explanation": "0! is defined as 1." }
+    ],
+    "testCases": [
+      { "input": "factorial(5)", "output": "120", "isHidden": false },
+      { "input": "factorial(0)", "output": "1", "isHidden": false },
+      { "input": "factorial(10)", "output": "3628800", "isHidden": true }
+    ],
+    "starterCode": {
+      "python": "def factorial(n):\n    return 0",
+      "javascript": "function factorial(n) {\n    return 0;\n}",
+      "cpp": "int factorial(int n) {\n    return 0;\n}",
+      "java": "public static int factorial(int n) {\n    return 0;\n}"
+    }
+  },
+  {
+    "title": "Nth Fibonacci Number",
+    "description": "Write a function named `fibonacci` that returns the Nth number in the sequence. Sequence starts: 0, 1, 1, 2, 3...",
+    "topic": "Dynamic Programming",
+    "difficulty": "MEDIUM",
+    "expReward": 250,
+    "examples": [
+      { "input": "5", "output": "5", "explanation": "The 5th index is 5." },
+      { "input": "0", "output": "0", "explanation": "The 0th index is 0." }
+    ],
+    "testCases": [
+      { "input": "fibonacci(5)", "output": "5", "isHidden": false },
+      { "input": "fibonacci(0)", "output": "0", "isHidden": false },
+      { "input": "fibonacci(10)", "output": "55", "isHidden": true }
+    ],
+    "starterCode": {
+      "python": "def fibonacci(n):\n    return 0",
+      "javascript": "function fibonacci(n) {\n    return 0;\n}",
+      "cpp": "int fibonacci(int n) {\n    return 0;\n}",
+      "java": "public static int fibonacci(int n) {\n    return 0;\n}"
+    }
+  },
+  {
+    "title": "Greatest Common Divisor (GCD)",
+    "description": "Write a function named `gcd` that takes two integers and returns their greatest common divisor.",
+    "topic": "Mathematics",
+    "difficulty": "MEDIUM",
+    "expReward": 250,
+    "examples": [
+      { "input": "12, 8", "output": "4", "explanation": "4 is the largest number dividing both." },
+      { "input": "7, 3", "output": "1", "explanation": "They are prime to each other." }
+    ],
+    "testCases": [
+      { "input": "gcd(12, 8)", "output": "4", "isHidden": false },
+      { "input": "gcd(7, 3)", "output": "1", "isHidden": false },
+      { "input": "gcd(100, 25)", "output": "25", "isHidden": true }
+    ],
+    "starterCode": {
+      "python": "def gcd(a, b):\n    return 0",
+      "javascript": "function gcd(a, b) {\n    return 0;\n}",
+      "cpp": "int gcd(int a, int b) {\n    return 0;\n}",
+      "java": "public static int gcd(int a, int b) {\n    return 0;\n}"
+    }
+  },
+  {
+    "title": "Least Common Multiple (LCM)",
+    "description": "Write a function named `lcm` that takes two integers and returns their least common multiple.",
+    "topic": "Mathematics",
+    "difficulty": "MEDIUM",
+    "expReward": 250,
+    "examples": [
+      { "input": "4, 6", "output": "12", "explanation": "12 is the smallest number divisible by both 4 and 6." },
+      { "input": "5, 7", "output": "35", "explanation": "35 is the LCM." }
+    ],
+    "testCases": [
+      { "input": "lcm(4, 6)", "output": "12", "isHidden": false },
+      { "input": "lcm(5, 7)", "output": "35", "isHidden": false },
+      { "input": "lcm(10, 20)", "output": "20", "isHidden": true }
+    ],
+    "starterCode": {
+      "python": "def lcm(a, b):\n    return 0",
+      "javascript": "function lcm(a, b) {\n    return 0;\n}",
+      "cpp": "int lcm(int a, int b) {\n    return 0;\n}",
+      "java": "public static int lcm(int a, int b) {\n    return 0;\n}"
+    }
+  },
+  {
+    "title": "Sum of Digits",
+    "description": "Write a function named `sumDigits` that takes a positive integer and returns the sum of its individual digits.",
+    "topic": "Mathematics",
+    "difficulty": "MEDIUM",
+    "expReward": 250,
+    "examples": [
+      { "input": "123", "output": "6", "explanation": "1 + 2 + 3 = 6." },
+      { "input": "909", "output": "18", "explanation": "9 + 0 + 9 = 18." }
+    ],
+    "testCases": [
+      { "input": "sumDigits(123)", "output": "6", "isHidden": false },
+      { "input": "sumDigits(909)", "output": "18", "isHidden": false },
+      { "input": "sumDigits(0)", "output": "0", "isHidden": true }
+    ],
+    "starterCode": {
+      "python": "def sumDigits(n):\n    return 0",
+      "javascript": "function sumDigits(n) {\n    return 0;\n}",
+      "cpp": "int sumDigits(int n) {\n    return 0;\n}",
+      "java": "public static int sumDigits(int n) {\n    return 0;\n}"
+    }
+  },
+  {
+    "title": "Longest Unique Substring",
+    "description": "Write a function named `longestUnique` that returns the length of the longest substring without repeating characters.",
+    "topic": "Sliding Window",
+    "difficulty": "HARD",
+    "expReward": 500,
+    "examples": [
+      { "input": "\"abcabcbb\"", "output": "3", "explanation": "The answer is 'abc', with the length of 3." },
+      { "input": "\"bbbbb\"", "output": "1", "explanation": "The answer is 'b', with the length of 1." }
+    ],
+    "testCases": [
+      { "input": "longestUnique(\"abcabcbb\")", "output": "3", "isHidden": false },
+      { "input": "longestUnique(\"bbbbb\")", "output": "1", "isHidden": false },
+      { "input": "longestUnique(\"pwwkew\")", "output": "3", "isHidden": true }
+    ],
+    "starterCode": {
+      "python": "def longestUnique(s):\n    return 0",
+      "javascript": "function longestUnique(s) {\n    return 0;\n}",
+      "cpp": "int longestUnique(string s) {\n    return 0;\n}",
+      "java": "public static int longestUnique(String s) {\n    return 0;\n}"
+    }
+  },
+  {
+    "title": "String to Integer (ATOI)",
+    "description": "Write a function named `strToInt` that converts a string of digits into an integer. It may start with a '-' sign.",
+    "topic": "Strings",
+    "difficulty": "HARD",
+    "expReward": 500,
+    "examples": [
+      { "input": "\"42\"", "output": "42", "explanation": "Parsed as integer 42." },
+      { "input": "\"-150\"", "output": "-150", "explanation": "Parsed as negative 150." }
+    ],
+    "testCases": [
+      { "input": "strToInt(\"42\")", "output": "42", "isHidden": false },
+      { "input": "strToInt(\"-150\")", "output": "-150", "isHidden": false },
+      { "input": "strToInt(\"0\")", "output": "0", "isHidden": true }
+    ],
+    "starterCode": {
+      "python": "def strToInt(s):\n    return 0",
+      "javascript": "function strToInt(s) {\n    return 0;\n}",
+      "cpp": "int strToInt(string s) {\n    return 0;\n}",
+      "java": "public static int strToInt(String s) {\n    return 0;\n}"
+    }
+  },
+  {
+    "title": "Count Primes Up To N",
+    "description": "Write a function named `countPrimes` that takes an integer N and returns the number of prime numbers strictly less than N.",
+    "topic": "Mathematics",
+    "difficulty": "HARD",
+    "expReward": 500,
+    "examples": [
+      { "input": "10", "output": "4", "explanation": "Primes less than 10 are 2, 3, 5, 7." },
+      { "input": "2", "output": "0", "explanation": "There are no primes strictly less than 2." }
+    ],
+    "testCases": [
+      { "input": "countPrimes(10)", "output": "4", "isHidden": false },
+      { "input": "countPrimes(2)", "output": "0", "isHidden": false },
+      { "input": "countPrimes(30)", "output": "10", "isHidden": true }
+    ],
+    "starterCode": {
+      "python": "def countPrimes(n):\n    return 0",
+      "javascript": "function countPrimes(n) {\n    return 0;\n}",
+      "cpp": "int countPrimes(int n) {\n    return 0;\n}",
+      "java": "public static int countPrimes(int n) {\n    return 0;\n}"
+    }
+  },
+  {
+    "title": "Power Function",
+    "description": "Write a function named `power` that takes a `base` and an `exponent`. Return the `base` raised to the power of `exponent`.",
+    "topic": "Mathematics",
+    "difficulty": "HARD",
+    "expReward": 500,
+    "examples": [
+      { "input": "2, 3", "output": "8", "explanation": "2^3 = 8." },
+      { "input": "5, 0", "output": "1", "explanation": "Anything to the power of 0 is 1." }
+    ],
+    "testCases": [
+      { "input": "power(2, 3)", "output": "8", "isHidden": false },
+      { "input": "power(5, 0)", "output": "1", "isHidden": false },
+      { "input": "power(3, 4)", "output": "81", "isHidden": true }
+    ],
+    "starterCode": {
+      "python": "def power(base, exp):\n    return 0",
+      "javascript": "function power(base, exp) {\n    return 0;\n}",
+      "cpp": "int power(int base, int exp) {\n    return 0;\n}",
+      "java": "public static int power(int base, int exp) {\n    return 0;\n}"
+    }
+  },
+  {
+    "title": "Isomorphic Strings",
+    "description": "Write a function named `isIsomorphic` that takes two strings. Return `1` if the characters in s1 can be replaced to get s2, and `0` otherwise.",
+    "topic": "Hashing",
+    "difficulty": "HARD",
+    "expReward": 500,
+    "examples": [
+      { "input": "\"egg\", \"add\"", "output": "1", "explanation": "e maps to a, g maps to d." },
+      { "input": "\"foo\", \"bar\"", "output": "0", "explanation": "o cannot map to both a and r." }
+    ],
+    "testCases": [
+      { "input": "isIsomorphic(\"egg\", \"add\")", "output": "1", "isHidden": false },
+      { "input": "isIsomorphic(\"foo\", \"bar\")", "output": "0", "isHidden": false },
+      { "input": "isIsomorphic(\"paper\", \"title\")", "output": "1", "isHidden": true }
+    ],
+    "starterCode": {
+      "python": "def isIsomorphic(s1, s2):\n    return 0",
+      "javascript": "function isIsomorphic(s1, s2) {\n    return 0;\n}",
+      "cpp": "int isIsomorphic(string s1, string s2) {\n    return 0;\n}",
+      "java": "public static int isIsomorphic(String s1, String s2) {\n    return 0;\n}"
+    }
+  }
+]
