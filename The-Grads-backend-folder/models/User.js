@@ -64,6 +64,23 @@ const userSchema = new mongoose.Schema(
       type: Date,
       default: Date.now(),
     },
+    // Add this inside your UserSchema
+    solvedQuestions: [
+      {
+        question: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Challenge", // Links to your Challenge model!
+        },
+        language: {
+          type: String, // e.g., "Python", "JavaScript", "C++"
+          required: true,
+        },
+        solvedAt: {
+          type: Date,
+          default: Date.now,
+        },
+      },
+    ],
   },
   { timestamps: true }, //This automatically add the createdAt and updatedAt dates
 );

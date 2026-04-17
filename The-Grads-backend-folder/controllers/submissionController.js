@@ -198,6 +198,41 @@ const createSubmission = async (req, res) => {
       updatedData.$inc = { experiencePoints: actualExpToAward };
     }
 
+    // ==========================================
+    // 🔥 NEW ADMIN ANALYTICS ENGINE INJECTION 🔥
+    // ==========================================
+    // Only count it as "solved" if they passed 100% of the tests
+    if (status === "PASSED") {
+      // Make sure the array exists
+      if (!user.solvedQuestions) user.solvedQuestions = [];
+
+      // Check if they already solved this exact challenge before to prevent double-counting
+      const alreadySolved = user.solvedQuestions.some(
+        (sq) => sq.question && sq.question.toString() === challengeId,
+      );
+
+      if (!alreadySolved) {
+        // We push this directly to the array (we'll save it at the end)
+        user.solvedQuestions.push({
+          question: challengeId,
+          language: language, // The language they used for this successful attempt
+        });
+
+        // We use $set to force mongoose to save the updated array
+        updatedData.solvedQuestions = user.solvedQuestions;
+      }
+    }
+    // ==========================================
+    // 8.5 UPDATE CHALLENGE ANALYTICS
+    const challengeUpdate = {
+      $inc: { totalAttempts: 1 }, // Every run counts as an attempt
+    };
+
+    if (status === "PASSED") {
+      challengeUpdate.$inc.successfulAttempts = 1; // Only count full success
+    }
+
+    await Challenge.findByIdAndUpdate(challengeId, challengeUpdate);
     // --- MONTHLY ARENA MATH ---
     const currentMonth = today.getMonth();
     const currentYear = today.getFullYear();

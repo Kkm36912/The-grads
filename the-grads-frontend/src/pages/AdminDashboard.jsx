@@ -2,15 +2,21 @@ import React, { useState, useContext } from 'react';
 import { Users, FileText, BarChart3, LogOut, PlusCircle } from 'lucide-react';
 import { AuthContext } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import StudentLog from '../components/admin/StudentLog';
+import CreateQuestionModal from '../components/admin/CreateQuestionModal';
+import QuestionLog from '../components/admin/QuestionLog';
+import PlatformAnalytics from '../components/admin/PlatformAnalytics';
 
 export default function AdminDashboard() {
   const { user, logout } = useContext(AuthContext);
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState('analytics'); // analytics, questions, students, create-question
+  const [activeTab, setActiveTab] = useState('analytics'); // analytics, questions, students, 
+  //create-question
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
 
   const handleLogout = () => {
     logout();
-    navigate('/login');
+    window.location.href = '/';
   };
 
   // ================= SIDEBAR NAVIGATION =================
@@ -78,7 +84,7 @@ export default function AdminDashboard() {
           {/* Create Question Action Button (Bottom Left as requested) */}
           <div className="p-4 border-t border-slate-800">
             <button 
-              onClick={() => setActiveTab('create-question')}
+              onClick={() => setIsCreateModalOpen(true)}
               className="w-full flex items-center justify-center gap-2 px-4 py-4 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg font-bold transition-colors shadow-lg"
             >
               <PlusCircle className="w-5 h-5" />
@@ -100,35 +106,19 @@ export default function AdminDashboard() {
       <main className="flex-1 relative overflow-y-auto bg-slate-900 p-8">
         <div className="max-w-6xl mx-auto">
           
+          
           {/* Section Routing */}
           {activeTab === 'analytics' && (
-            <div>
-              <h2 className="text-3xl font-bold text-white border-b border-slate-800 pb-4 mb-6">Platform Analytics</h2>
-              {/* Graph and Top Achievers will go here */}
-              <div className="h-64 border-2 border-dashed border-slate-700 rounded-xl flex items-center justify-center text-slate-500">
-                [ Analytics Graph Module Pending ]
-              </div>
-            </div>
+            <PlatformAnalytics />
           )}
 
+          {/* 🔥 FULLY REPLACED WITH YOUR NEW QUESTION LOG COMPONENT 🔥 */}
           {activeTab === 'questions' && (
-            <div>
-              <h2 className="text-3xl font-bold text-white border-b border-slate-800 pb-4 mb-6">Question Log</h2>
-              {/* Question list will go here */}
-              <div className="h-64 border-2 border-dashed border-slate-700 rounded-xl flex items-center justify-center text-slate-500">
-                [ Question Log Module Pending ]
-              </div>
-            </div>
+            <QuestionLog />
           )}
 
           {activeTab === 'students' && (
-            <div>
-              <h2 className="text-3xl font-bold text-white border-b border-slate-800 pb-4 mb-6">Student Database</h2>
-              {/* Student Search and Grid will go here */}
-              <div className="h-64 border-2 border-dashed border-slate-700 rounded-xl flex items-center justify-center text-slate-500">
-                [ Student Database Module Pending ]
-              </div>
-            </div>
+            <StudentLog />
           )}
 
           {activeTab === 'create-question' && (
@@ -148,6 +138,12 @@ export default function AdminDashboard() {
 
         </div>
       </main>
+      
+      <CreateQuestionModal 
+        isOpen={isCreateModalOpen} 
+        onClose={() => setIsCreateModalOpen(false)} 
+        onSuccess={() => { /* optionally trigger a fetch if you want */ }}
+      />
     </div>
   );
 }

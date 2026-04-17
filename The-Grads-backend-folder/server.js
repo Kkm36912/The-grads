@@ -23,6 +23,7 @@ const challengeRoutes = require("./routes/challengeRoutes.js");
 const submissionRoutes = require("./routes/submissionRoutes");
 const pauseRoutes = require("./routes/pauseRoutes.js");
 const leaderboardRoutes = require("./routes/leaderboardRoutes.js");
+const adminRoutes = require("./routes/adminRoutes");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -58,6 +59,7 @@ app.use("/api/challenges", challengeRoutes);
 app.use("/api/submissions", submissionRoutes);
 app.use("/api/pause", pauseRoutes);
 app.use("/api/leaderboard", leaderboardRoutes);
+app.use("/api/admin", adminRoutes);
 
 // Dashboard Route
 app.get("/api/dashboard", verifyToken, async (req, res) => {

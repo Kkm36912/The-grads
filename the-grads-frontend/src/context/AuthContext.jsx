@@ -5,7 +5,7 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(localStorage.getItem('token') || null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   
 
   // Set default auth header for all future requests
@@ -20,19 +20,33 @@ export const AuthProvider = ({ children }) => {
 
   // Function to get the freshest data from the backend
   const fetchProfile = async () => {
-    if (!token) return;
+    if (!token) {
+      setLoading(false);
+      return;
+    }
+
+    // 🔥 THE FIX: Only trigger the full-screen loader if the user isn't loaded yet!
+    // If they are already playing, do this silently in the background.
+    if (!user) {
+      setLoading(true); 
+    }
+    
     try {
-      // Assuming you have a route that returns the logged-in user's profile
       const res = await fetch('http://localhost:5000/api/auth/me', {
         headers: { Authorization: `Bearer ${token}` }
       });
       const data = await res.json();
-      if (res.ok) setUser(data);
+      if (res.ok) {
+        setUser(data);
+      } else {
+        logout(); 
+      }
     } catch (err) {
       console.error("Error fetching profile:", err);
+    } finally {
+      setLoading(false); 
     }
   };
-
   // Fetch profile whenever token changes
   useEffect(() => {
     fetchProfile();
@@ -86,6 +100,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logout = () => {
+    localStorage.removeItem('token'); // 🔥 INSTANTLY NUKE THE TOKEN
     setToken(null);
     setUser(null);
   };

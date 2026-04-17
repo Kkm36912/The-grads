@@ -12,8 +12,20 @@ import AdminDashboard from './pages/AdminDashboard';
 
 // 🔥 We create an inner component so we can safely read the AuthContext
 function AppRoutes() {
-  const { user } = useContext(AuthContext);
+  // 🔥 THE FIX: We are explicitly pulling 'loading' out of the context here alongside 'user'
+  const { user, loading } = useContext(AuthContext);
 
+  // The Bouncer Loading Screen
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-[#03070b] flex flex-col items-center justify-center">
+         <div className="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mb-4"></div>
+         <p className="text-blue-400 font-mono animate-pulse tracking-widest text-sm uppercase">Initializing Secure Connection...</p>
+      </div>
+    );
+  }
+
+  // Your Normal Routes
   return (
     <Routes>
       <Route path="/" element={<Landing />} />
@@ -22,7 +34,7 @@ function AppRoutes() {
       <Route path="/community/chat" element={<ChatBox />} />
       <Route path="/community/voice" element={<VoiceRoom />} />
       
-      {/* 🔥 THE ADMIN ROUTE */}
+      {/* THE ADMIN ROUTE */}
       <Route path="/admin-dashboard" element={
         user?.role === 'ADMIN' ? <AdminDashboard /> : <Navigate to="/dashboard" />
       } />
