@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef, useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { getSocket } from "../lib/socket";
 import { Send, Users, MessageSquare } from 'lucide-react';
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function ChatBox({ switchTab }) {
   const socket = getSocket();
@@ -13,7 +14,6 @@ export default function ChatBox({ switchTab }) {
   const [typingUsers, setTypingUsers] = useState(new Map());
   const [inputFocused, setInputFocused] = useState(false);
 
-  /* 🔥 RESTORED HISTORY STATES */
   const [hasMoreHistory, setHasMoreHistory] = useState(true);
   const [loadingHistory, setLoadingHistory] = useState(false);
   const oldestSnowflakeRef = useRef(null);
@@ -24,10 +24,8 @@ export default function ChatBox({ switchTab }) {
   const isPrependingRef = useRef(false);
   const lastTypingSent = useRef(0);
 
-  // 🔥 ACTUALLY USING THE API URL NOW
   const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
-  /* ---------- PRESENCE ---------- */
   useEffect(() => {
     if (!user) return;
     socket.emit("presence:online", { userId: user._id, username: user.username });
@@ -50,7 +48,6 @@ export default function ChatBox({ switchTab }) {
     return () => socket.off("presence:update", handler);
   }, [user, socket]);
 
-  /* ---------- 🔥 RESTORED INITIAL HISTORY LOAD ---------- */
   useEffect(() => {
     fetch(`${API_URL}/api/messages?limit=50`)
       .then((res) => res.json())
@@ -60,12 +57,11 @@ export default function ChatBox({ switchTab }) {
         
         setMessages(msgs);
         setHasMoreHistory(data.hasMore ?? true);
-        if (msgs.length > 0) oldestSnowflakeRef.current = msgs.snowflake;
+        if (msgs.length > 0) oldestSnowflakeRef.current = msgs[0].snowflake;
       })
       .catch(err => console.error("History fetch error:", err));
   }, [API_URL]);
 
-  /* ---------- 🔥 RESTORED OLDER HISTORY LOADER ---------- */
   const loadOlderHistory = async () => {
     if (!hasMoreHistory || loadingHistory || !oldestSnowflakeRef.current) return;
     setLoadingHistory(true);
@@ -79,7 +75,7 @@ export default function ChatBox({ switchTab }) {
       const older = data.messages ?? data;
 
       if (older.length > 0) {
-        oldestSnowflakeRef.current = older.snowflake;
+        oldestSnowflakeRef.current = older[0].snowflake;
         isPrependingRef.current = true;
         setMessages((prev) => [...older, ...prev]);
       }
@@ -99,7 +95,6 @@ export default function ChatBox({ switchTab }) {
     if (containerRef.current.scrollTop < 120) loadOlderHistory();
   };
 
-  /* ---------- REALTIME MESSAGES ---------- */
   useEffect(() => {
     socket.on("new-message", (msg) => {
       setMessages((prev) => {
@@ -129,7 +124,6 @@ export default function ChatBox({ switchTab }) {
     };
   }, [socket]);
 
-  /* ---------- 🔥 RESTORED TYPING INDICATORS ---------- */
   useEffect(() => {
     socket.on("typing:start", ({ userId, username }) => {
       setTypingUsers((prev) => {
@@ -153,7 +147,6 @@ export default function ChatBox({ switchTab }) {
     };
   }, [socket]);
 
-  /* ---------- AUTO SCROLL ---------- */
   useEffect(() => {
     if (isPrependingRef.current) {
       isPrependingRef.current = false;
@@ -173,7 +166,6 @@ export default function ChatBox({ switchTab }) {
     typingTimer.current = setTimeout(() => socket.emit("typing:stop"), 1500);
   };
 
-  /* ---------- SEND ---------- */
   const send = () => {
     if (!input.trim() || !user) return;
     socket.emit("send-message", {
@@ -185,7 +177,6 @@ export default function ChatBox({ switchTab }) {
     socket.emit("typing:stop");
   };
 
-  // Helper for grouping messages functionally
   const groupMessagesByDate = (msgs) => {
     const groups = {};
     msgs.forEach(m => {
@@ -201,28 +192,33 @@ export default function ChatBox({ switchTab }) {
     <div className="flex h-[calc(100vh-120px)] w-full gap-4 p-2 md:p-4 animate-in fade-in duration-500">
       
       {/* LEFT: ONLINE LIST */}
-      <div className="hidden lg:flex flex-col w-64 bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-6 shadow-2xl">
+      <div className="hidden lg:flex flex-col w-64 bg-[#040a0f]/60 backdrop-blur-2xl border border-white/10 rounded-3xl p-6 shadow-2xl overflow-hidden">
         <div className="flex items-center gap-2 mb-6 px-2">
           <Users className="w-4 h-4 text-grads-cyan" />
           <h4 className="text-[10px] font-mono text-slate-500 uppercase tracking-widest">Active Grads</h4>
         </div>
         <div className="flex-1 overflow-y-auto space-y-3 custom-scrollbar">
           {onlineUsers.map((u) => (
-            <div key={u.userId} className="flex items-center gap-3 p-2 rounded-xl hover:bg-white/5 transition-all group cursor-pointer">
-               <div className="relative">
-                 <div className="w-8 h-8 rounded-full bg-grads-cyan/20 border border-grads-cyan/30 flex items-center justify-center text-grads-cyan text-xs font-bold">
-                   {u.username.charAt(0).toUpperCase()}
-                 </div>
-                 <div className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 rounded-full border-2 border-[#040a0f]"></div>
-               </div>
-               <span className="text-sm text-slate-300 group-hover:text-white transition-colors truncate">{u.username}</span>
-            </div>
+            <motion.div
+              key={u.userId}
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="flex items-center gap-3 p-2 rounded-xl hover:bg-white/5 transition-all group cursor-pointer"
+            >
+              <div className="relative">
+                <div className="w-8 h-8 rounded-full bg-grads-cyan/20 border border-grads-cyan/30 flex items-center justify-center text-grads-cyan text-xs font-bold">
+                  {u.username.charAt(0).toUpperCase()}
+                </div>
+                <div className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 rounded-full border-2 border-[#040a0f]"></div>
+              </div>
+              <span className="text-sm text-slate-300 group-hover:text-white transition-colors truncate">{u.username}</span>
+            </motion.div>
           ))}
         </div>
       </div>
 
       {/* RIGHT: CHAT INTERFACE */}
-      <div className="flex-1 flex flex-col bg-[#040a0f]/60 backdrop-blur-2xl border border-white/5 rounded-3xl overflow-hidden shadow-2xl relative">
+      <div className="flex-1 flex flex-col bg-[#040a0f]/60 backdrop-blur-2xl border border-white/10 rounded-3xl overflow-hidden shadow-2xl relative">
         
         {/* HEADER */}
         <div className="px-6 md:px-8 py-4 border-b border-white/5 flex justify-between items-center bg-white/5">
@@ -235,12 +231,14 @@ export default function ChatBox({ switchTab }) {
               <p className="text-[10px] text-slate-500 font-mono hidden md:block">SECTOR: COMMUNITY_HUB</p>
             </div>
           </div>
-          <button 
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             onClick={() => switchTab('audio')}
             className="text-[10px] font-mono px-4 py-2 bg-grads-cyan/10 border border-grads-cyan/20 text-grads-cyan rounded-full hover:bg-grads-cyan/20 transition-all uppercase tracking-widest"
           >
             Switch to Audio
-          </button>
+          </motion.button>
         </div>
 
         {/* MESSAGES */}
@@ -271,10 +269,21 @@ export default function ChatBox({ switchTab }) {
                   const isSameUserAsPrev = prev && prev.userId === m.userId;
 
                   return (
-                    <div key={m.snowflake} className={`flex ${isMe ? "justify-end" : "justify-start"} group`}>
+                    <motion.div
+                      key={m.snowflake}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className={`flex ${isMe ? "justify-end" : "justify-start"} group`}
+                    >
                       <div className={`max-w-[85%] md:max-w-[70%] ${isMe ? "items-end" : "items-start"} flex flex-col gap-1`}>
                         {!isMe && !isSameUserAsPrev && (
-                          <span className="text-[10px] font-mono text-slate-400 ml-2 mt-2">{m.username}</span>
+                          <motion.span 
+                            initial={{ opacity: 0, y: -10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className="text-[10px] font-mono text-slate-400 ml-2 mt-2"
+                          >
+                            {m.username}
+                          </motion.span>
                         )}
                         <div className={`px-5 py-3 rounded-2xl text-sm leading-relaxed shadow-sm relative ${
                           isMe 
@@ -289,30 +298,38 @@ export default function ChatBox({ switchTab }) {
                           )}
                         </div>
                       </div>
-                    </div>
+                    </motion.div>
                   );
                 })}
               </div>
             </div>
           ))}
 
-          {/* 🔥 RESTORED TYPING INDICATOR UI */}
-          {typingUsers.size > 0 && (() => {
-            const users = Array.from(typingUsers.values());
-            const visible = users.slice(0, 3);
-            return (
-              <div className="flex justify-start my-2 animate-in slide-in-from-bottom-2">
-                <div className="bg-white/5 border border-white/10 px-4 py-3 rounded-2xl rounded-bl-sm flex items-center gap-3">
-                  <div className="flex space-x-1.5">
-                    <div className="w-1.5 h-1.5 bg-grads-cyan rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
-                    <div className="w-1.5 h-1.5 bg-grads-cyan rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
-                    <div className="w-1.5 h-1.5 bg-grads-cyan rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+          <AnimatePresence>
+            {typingUsers.size > 0 && (() => {
+              const users = Array.from(typingUsers.values());
+              const visible = users.slice(0, 3);
+              return (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0 }}
+                  className="flex justify-start my-2"
+                >
+                  <div className="bg-white/5 border border-white/10 px-4 py-3 rounded-2xl rounded-bl-sm flex items-center gap-3">
+                    <div className="flex space-x-1.5">
+                      <div className="w-1.5 h-1.5 bg-grads-cyan rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
+                      <div className="w-1.5 h-1.5 bg-grads-cyan rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
+                      <div className="w-1.5 h-1.5 bg-grads-cyan rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+                    </div>
+                    <span className="text-xs text-slate-400">
+                      {visible.join(", ")} {users.length > 3 && `+${users.length - 3}`} typing...
+                    </span>
                   </div>
-                  <span className="text-xs text-slate-400">{visible.join(", ")} {users.length > 3 && `+${users.length - 3}`} typing...</span>
-                </div>
-              </div>
-            );
-          })()}
+                </motion.div>
+              );
+            })()}
+          </AnimatePresence>
 
           <div ref={bottomRef} />
         </div>
@@ -329,12 +346,19 @@ export default function ChatBox({ switchTab }) {
               placeholder="Inject your query into the stream..."
               className="flex-1 bg-black/40 border border-white/10 rounded-2xl px-6 py-4 text-sm text-white placeholder:text-slate-600 focus:outline-none focus:border-grads-cyan/50 focus:ring-1 focus:ring-grads-cyan/30 transition-all"
             />
-            <button 
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               onClick={send}
-              className="p-4 bg-grads-cyan rounded-2xl text-black hover:scale-105 active:scale-95 transition-all shadow-[0_0_20px_rgba(14,165,233,0.3)]"
+              disabled={!input.trim()}
+              className={`p-4 rounded-2xl transition-all shadow-lg ${
+                input.trim()
+                  ? 'bg-gradient-to-br from-grads-teal to-grads-cyan text-black shadow-[0_0_20px_rgba(14,165,233,0.3)]'
+                  : 'bg-slate-800 text-slate-600'
+              }`}
             >
               <Send className="w-5 h-5" />
-            </button>
+            </motion.button>
           </div>
         </div>
       </div>
