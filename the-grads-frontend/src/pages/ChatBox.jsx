@@ -26,6 +26,10 @@ export default function ChatBox({ switchTab }) {
 
   const API_URL = import.meta.env.VITE_API_URL || "https://the-grads.onrender.com";
 
+  // ✅ CENTRAL SORT FUNCTION (single source of truth)
+  const sortMessages = (msgs) =>
+    msgs.sort((a, b) => Number(a.snowflake) - Number(b.snowflake));
+
   useEffect(() => {
     if (!user) return;
     socket.emit("presence:online", { userId: user._id, username: user.username });
@@ -48,20 +52,27 @@ export default function ChatBox({ switchTab }) {
     return () => socket.off("presence:update", handler);
   }, [user, socket]);
 
+  // ✅ INITIAL LOAD
   useEffect(() => {
     fetch(`${API_URL}/api/messages?limit=50`)
       .then((res) => res.json())
       .then((data) => {
         const msgs = data.messages ?? data;
         if (!Array.isArray(msgs)) return;
-        
-        setMessages(msgs);
+
+        const sorted = sortMessages([...msgs]);
+
+        setMessages(sorted);
         setHasMoreHistory(data.hasMore ?? true);
-        if (msgs.length > 0) oldestSnowflakeRef.current = msgs[0].snowflake;
+
+        if (sorted.length > 0) {
+          oldestSnowflakeRef.current = sorted[0].snowflake;
+        }
       })
       .catch(err => console.error("History fetch error:", err));
   }, [API_URL]);
 
+  // ✅ PAGINATION FIXED
   const loadOlderHistory = async () => {
     if (!hasMoreHistory || loadingHistory || !oldestSnowflakeRef.current) return;
     setLoadingHistory(true);
@@ -75,17 +86,23 @@ export default function ChatBox({ switchTab }) {
       const older = data.messages ?? data;
 
       if (older.length > 0) {
-        oldestSnowflakeRef.current = older[0].snowflake;
+        const sortedOlder = sortMessages([...older]);
+
+        oldestSnowflakeRef.current = sortedOlder[0].snowflake;
         isPrependingRef.current = true;
-        setMessages((prev) => [...older, ...prev]);
+
+        setMessages((prev) => sortMessages([...sortedOlder, ...prev]));
       }
+
       setHasMoreHistory(data.hasMore ?? older.length === 50);
     } catch (err) {
       console.error(err);
     } finally {
       setLoadingHistory(false);
       requestAnimationFrame(() => {
-        if (container) container.scrollTop = container.scrollHeight - prevHeight + container.scrollTop;
+        if (container) {
+          container.scrollTop = container.scrollHeight - prevHeight + container.scrollTop;
+        }
       });
     }
   };
@@ -95,25 +112,30 @@ export default function ChatBox({ switchTab }) {
     if (containerRef.current.scrollTop < 120) loadOlderHistory();
   };
 
+  // ✅ REALTIME FIXED
   useEffect(() => {
     socket.on("new-message", (msg) => {
       setMessages((prev) => {
         if (prev.find((m) => m.snowflake === msg.snowflake)) return prev;
-        return [...prev, msg];
+        return sortMessages([...prev, msg]);
       });
     });
 
     socket.on("new-message-batch", (batch) => {
       setMessages(prev => {
         const existing = new Set(prev.map(m => m.snowflake));
-        const newMessages = batch.filter((m) => !existing.has(m.snowflake));
-        return [...prev, ...newMessages];
+        const newMessages = batch.filter(m => !existing.has(m.snowflake));
+        return sortMessages([...prev, ...newMessages]);
       });
     });
 
     socket.on("message:ack:batch", ({ snowflakes }) => {
       setMessages((prev) =>
-        prev.map((m) => snowflakes.includes(m.snowflake) ? { ...m, delivered: true } : m)
+        prev.map((m) =>
+          snowflakes.includes(m.snowflake)
+            ? { ...m, delivered: true }
+            : m
+        )
       );
     });
 
@@ -186,8 +208,10 @@ export default function ChatBox({ switchTab }) {
     });
     return groups;
   };
+
   const messageGroups = groupMessagesByDate(messages);
 
+  
   return (
     <div className="flex h-[calc(100vh-120px)] w-full gap-4 p-2 md:p-4 animate-in fade-in duration-500">
       

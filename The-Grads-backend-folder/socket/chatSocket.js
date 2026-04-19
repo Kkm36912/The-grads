@@ -3,7 +3,7 @@ const { db } = require("../db/sql");
 const { messages } = require("../db/schema");
 const Snowflake = require("./snowflake");
 
-let BATCH_SIZE = 300;
+let BATCH_SIZE = 30;
 const FLUSH_INTERVAL = 200;
 const MAX_BUFFER = 7000;
 const MAX_OUTBOUND_BATCH = 1000;
