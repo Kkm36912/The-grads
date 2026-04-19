@@ -8,12 +8,11 @@ import {
 import axios from 'axios';
 import HomeSection from './HomeSection';
 import CodingArena from './CodingArena';
-// 🔥 IMPORT YOUR NEW COMPONENTS HERE (Adjust paths if they are in different folders)
-//import ChatBox from './ChatBox'; 
-//import VoiceRoom from './VoiceRoom';
+import GamificationPanel from '../components/GamificationPanel';
 // 🔥 Import them lazily instead:
 const ChatBox = lazy(() => import('./ChatBox'));
 const VoiceRoom = lazy(() => import('./VoiceRoom'));
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import LeaderboardModal from '../components/LeaderboardModal';
 
@@ -109,6 +108,13 @@ useEffect(() => {
   // 🔥 Helper to check if we are in a fullscreen app view
   const isAppView = activeTab === 'chat' || activeTab === 'audio';
 
+  const { logout } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout(); // Clears the token/session
+    navigate('/'); // Redirects to the landing page (or use window.location.href = '/' if you prefer)
+  };
   return (
     <div className="min-h-screen bg-[#03070b] text-slate-300 font-sans flex overflow-hidden selection:bg-grads-cyan/30 cursor-default">
       
@@ -182,14 +188,28 @@ useEffect(() => {
 
         {/* BOTTOM SETTINGS */}
         <div className="p-4 border-t border-white/5 bg-[#0a1219]/30 shrink-0">
-          <button className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:text-grads-cyan hover:bg-white/5 transition-colors group">
+          
+          {/* Settings Button */}
+          <button 
+            onClick={() => {
+              setActiveTab('settings');
+              if (isMobile) setIsSidebarOpen(false); // Optional: closes sidebar on mobile after clicking
+            }}
+            className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-colors group ${activeTab === 'settings' ? 'bg-grads-cyan/10 text-grads-cyan' : 'text-slate-400 hover:text-grads-cyan hover:bg-white/5'}`}
+          >
             <Settings className="w-5 h-5 group-hover:text-grads-cyan transition-colors" />
-            <span className="text-sm">Settings & Theme</span>
+            <span className="text-sm font-bold">Settings & Status</span>
           </button>
-          <button className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:text-red-400 hover:bg-red-500/10 transition-colors mt-1 group">
+          
+          {/* Disconnect Button */}
+          <button 
+            onClick={handleLogout}
+            className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:text-red-400 hover:bg-red-500/10 transition-colors mt-1 group"
+          >
             <LogOut className="w-5 h-5 group-hover:text-red-400 transition-colors" />
-            <span className="text-sm">Disconnect</span>
+            <span className="text-sm font-bold">Disconnect</span>
           </button>
+
         </div>
       </aside>
 
@@ -238,9 +258,8 @@ useEffect(() => {
           <div className={`mx-auto w-full ${isAppView ? 'h-full max-w-none' : 'max-w-6xl'}`}>
             
            {/* ROUTING LOGIC */}
-            {activeTab === 'home' && <HomeSection user={user}/>}
+            {activeTab === 'home' && <HomeSection user={user} switchTab={setActiveTab} />}
             {activeTab === 'coding' && !isMobile && <CodingArena />}
-
             {/* LEADERBOARD SECTION */}
             {activeTab === 'leaderboard' && (
               <div className="max-w-4xl mx-auto animate-in fade-in duration-300 w-full">
@@ -302,7 +321,8 @@ useEffect(() => {
               {activeTab === 'chat' && <ChatBox switchTab={setActiveTab} />}
               {activeTab === 'audio' && <VoiceRoom switchTab={setActiveTab} />}
             </Suspense>
-
+            
+            {activeTab === 'settings' && <GamificationPanel />}
             {/* MOBILE LOCK FOR CODING */}
             {activeTab === 'coding' && isMobile && (
                <div className="flex flex-col items-center justify-center h-[70vh] text-center">
@@ -313,7 +333,7 @@ useEffect(() => {
             )}
 
             {/* FALLBACK FOR UNDEFINED TABS (WITH LEADERBOARD EXCEPTION FIXED) */}
-            {activeTab !== 'home' && activeTab !== 'coding' && activeTab !== 'chat' && activeTab !== 'audio' && activeTab !== 'leaderboard' && (
+            {activeTab !== 'home' && activeTab !== 'coding' && activeTab !== 'chat' && activeTab !== 'audio' && activeTab !== 'leaderboard' && activeTab !== 'settings' &&(
               <div className="py-20 text-center">
                 <h2 className="text-2xl font-bold text-white capitalize">{activeTab} Section</h2>
                 <p className="text-slate-500 mt-2">System offline. Sector under construction.</p>
