@@ -14,7 +14,7 @@ export default function PlatformAnalytics() {
     const fetchAnalytics = async () => {
       if (!token) return;
       try {
-        const res = await axios.get('http://localhost:5000/api/admin/analytics', {
+        const res = await axios.get('https://the-grads.onrender.com/api/admin/analytics', {
           headers: { Authorization: `Bearer ${token}` }
         });
         setData(res.data);

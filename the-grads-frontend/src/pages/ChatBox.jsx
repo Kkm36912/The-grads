@@ -24,7 +24,7 @@ export default function ChatBox({ switchTab }) {
   const isPrependingRef = useRef(false);
   const lastTypingSent = useRef(0);
 
-  const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+  const API_URL = import.meta.env.VITE_API_URL || "https://the-grads.onrender.com";
 
   useEffect(() => {
     if (!user) return;

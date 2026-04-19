@@ -14,7 +14,7 @@ export default function HomeSection({ user, switchTab }) {
   useEffect(() => {
     const fetchDailyChallenge = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/challenges', {
+        const res = await axios.get('https://the-grads.onrender.com/api/challenges', {
           headers: { Authorization: `Bearer ${token}` }
         });
         

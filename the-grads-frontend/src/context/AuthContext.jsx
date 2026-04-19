@@ -32,7 +32,7 @@ export const AuthProvider = ({ children }) => {
     }
     
     try {
-      const res = await fetch('http://localhost:5000/api/auth/me', {
+      const res = await fetch('https://the-grads.onrender.com/api/auth/me', {
         headers: { Authorization: `Bearer ${token}` }
       });
       const data = await res.json();
@@ -55,7 +55,7 @@ export const AuthProvider = ({ children }) => {
   const login = async (email, password) => {
     setLoading(true);
     try {
-      const response = await fetch('http://localhost:5000/api/login', {
+      const response = await fetch('https://the-grads.onrender.com/api/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
@@ -79,7 +79,7 @@ export const AuthProvider = ({ children }) => {
   const register = async (fullName, email, password) => {
     setLoading(true);
     try {
-      const response = await fetch('http://localhost:5000/api/register', {
+      const response = await fetch('https://the-grads.onrender.com/api/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ fullName, email, password }),

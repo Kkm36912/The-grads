@@ -31,7 +31,7 @@ export default function Compiler({ challenge, onBack, onPass }) {
     setResults(null);
 
     try {
-      const response = await fetch('http://localhost:5000/api/submissions', {
+      const response = await fetch('https://the-grads.onrender.com/api/submissions', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

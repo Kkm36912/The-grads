@@ -58,7 +58,7 @@ export default function CreateQuestionModal({ isOpen, onClose, onSuccess }) {
     };
 
     try {
-      await axios.post('http://localhost:5000/api/admin/questions', finalData, {
+      await axios.post('https://the-grads.onrender.com/api/admin/questions', finalData, {
         headers: { Authorization: `Bearer ${token}` }
       });
       alert("✅ Challenge injected into the Arena successfully!");

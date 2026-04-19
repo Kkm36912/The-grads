@@ -34,7 +34,7 @@ export default function GamificationPanel() {
   const handleActivatePause = async () => {
     try {
       setLoadingPause(true);
-      const res = await axios.post('http://localhost:5000/api/pause/activate', { weeksToPause: weeks }, {
+      const res = await axios.post('https://the-grads.onrender.com/api/pause/activate', { weeksToPause: weeks }, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setMessage({ text: res.data.message || 'Learning Pause Activated!', type: 'success' });

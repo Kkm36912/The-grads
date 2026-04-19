@@ -44,7 +44,7 @@ useEffect(() => {
     const fetchHoF = async () => {
       try {
         const token = localStorage.getItem("token");
-        const res = await axios.get('http://localhost:5000/api/leaderboard', {
+        const res = await axios.get('https://the-grads.onrender.com/api/leaderboard', {
           headers: { Authorization: `Bearer ${token}` }
         });
         setHallOfFameData(res.data.hallOfFame);
@@ -86,7 +86,7 @@ useEffect(() => {
     const token = localStorage.getItem("token"); 
     
     // 2. Send the token in the headers
-    const response = await axios.get('http://localhost:5000/api/leaderboard', {
+    const response = await axios.get('https://the-grads.onrender.com/api/leaderboard', {
       headers: { Authorization: `Bearer ${token}` }
     });
     

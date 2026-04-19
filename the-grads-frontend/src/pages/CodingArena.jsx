@@ -48,12 +48,12 @@ export default function CodingArena() {
     const fetchData = async () => {
       try {
         // Fetch Challenges
-        const challengesRes = await axios.get('http://localhost:5000/api/challenges', {
+        const challengesRes = await axios.get('https://the-grads.onrender.com/api/challenges', {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         
         // Fetch Global Rank (Using our updated leaderboard endpoint)
-        const rankRes = await axios.get('http://localhost:5000/api/leaderboard', {
+        const rankRes = await axios.get('https://the-grads.onrender.com/api/leaderboard', {
           headers: { 'Authorization': `Bearer ${token}` }
         });
 

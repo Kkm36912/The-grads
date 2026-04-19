@@ -25,7 +25,7 @@ export default function QuestionLog() {
       if (!token) return;
       try {
         setLoading(true);
-        const res = await axios.get('http://localhost:5000/api/admin/questions', {
+        const res = await axios.get('https://the-grads.onrender.com/api/admin/questions', {
           headers: { Authorization: `Bearer ${token}` }
         });
         setQuestions(res.data);

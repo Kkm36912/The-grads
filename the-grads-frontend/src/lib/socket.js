@@ -1,6 +1,7 @@
 import { io } from "socket.io-client";
 
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+const API_URL =
+  import.meta.env.VITE_API_URL || "https://the-grads.onrender.com";
 
 let socketInstance = null;
 let voiceSocketInstance = null;

@@ -22,7 +22,7 @@ export default function StudentLog() {
 
     try {
       setLoading(true);
-      const res = await axios.get(`http://localhost:5000/api/admin/students?search=${query}`, {
+      const res = await axios.get(`https://the-grads.onrender.com/api/admin/students?search=${query}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -54,7 +54,7 @@ export default function StudentLog() {
 
   const executeDelete = async () => {
     try {
-      await axios.delete(`http://localhost:5000/api/admin/students/${selectedStudent._id}`, {
+      await axios.delete(`https://the-grads.onrender.com/api/admin/students/${selectedStudent._id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setIsDeleteConfirmOpen(false);
