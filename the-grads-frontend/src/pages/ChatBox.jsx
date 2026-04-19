@@ -32,7 +32,7 @@ export default function ChatBox({ switchTab }) {
 
   useEffect(() => {
     if (!user) return;
-    socket.emit("presence:online", { userId: user._id, username: user.username });
+    socket.emit("presence:online", { userId: user._id, username:  user.fullName || user.username });
 
     const handler = (payload) => {
       if (Array.isArray(payload.users)) {
@@ -192,7 +192,7 @@ export default function ChatBox({ switchTab }) {
     if (!input.trim() || !user) return;
     socket.emit("send-message", {
       userId: user._id,
-      username: user.fullName,
+      username: user.fullName || user.username || "Unknown",
       content: input,
     });
     setInput("");
@@ -231,11 +231,11 @@ export default function ChatBox({ switchTab }) {
             >
               <div className="relative">
                 <div className="w-8 h-8 rounded-full bg-grads-cyan/20 border border-grads-cyan/30 flex items-center justify-center text-grads-cyan text-xs font-bold">
-                  ({u.username.charAt(0).toUpperCase()})
+                  ({(u.username || "U").charAt(0).toUpperCase()})
                 </div>
                 <div className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 rounded-full border-2 border-[#040a0f]"></div>
               </div>
-              <span className="text-sm text-slate-300 group-hover:text-white transition-colors truncate">{u.username}</span>
+              <span className="text-sm text-slate-300 group-hover:text-white transition-colors truncate">{u.username || "Unknown"}</span>
             </motion.div>
           ))}
         </div>

@@ -54,7 +54,11 @@ function initChat(io) {
       socket.userId = userId;
       socket.username = username;
 
-      presence.set(userId, { userId, username, status: "online" });
+      presence.set(userId, { 
+  userId, 
+  username: username || "Unknown", 
+  status: "online" 
+});
 
       socket.to("global-chat").emit("presence:update", {
         userId,
