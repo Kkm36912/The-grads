@@ -170,7 +170,7 @@ export default function ChatBox({ switchTab }) {
     if (!input.trim() || !user) return;
     socket.emit("send-message", {
       userId: user._id,
-      username: user.fullName,
+      username: user.username,
       content: input,
     });
     setInput("");
@@ -207,7 +207,7 @@ export default function ChatBox({ switchTab }) {
             >
               <div className="relative">
                 <div className="w-8 h-8 rounded-full bg-grads-cyan/20 border border-grads-cyan/30 flex items-center justify-center text-grads-cyan text-xs font-bold">
-                  {u.username.charAt(0).toUpperCase()}
+                  {(u.username || "U")[0].toUpperCase()}
                 </div>
                 <div className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 rounded-full border-2 border-[#040a0f]"></div>
               </div>
