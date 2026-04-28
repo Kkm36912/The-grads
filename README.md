@@ -54,5 +54,5 @@
 
 1. **Clone the repository:**
    ```bash
-   git clone [https://github.com/your-username/the-grads.git](https://github.com/your-username/the-grads.git)
+   git clone [https://github.com/your-username/the-grads.git](https://github.com/Kkm36912/The-grads.git)
    cd the-grads
